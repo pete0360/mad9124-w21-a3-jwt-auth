@@ -12,20 +12,12 @@ const parseToken = function (headerValue) {
     return undefined
     }
 
-    const checkApiKey = function (key) {
-        if (key === 'liko0007' || key === 'pete0360') {
-            return key
-        }
-        return undefined
-    }
     
     
     export default function (req, res, next) {
         const headerValue = req.header('Authorization')
-        const apiKey = req.header('x-api-key')
-        checkApiKey(apiKey)
         const token = parseToken(headerValue)
-    
+        
         if (!token) {
             return res.status(401).send({
             errors: [
@@ -36,18 +28,6 @@ const parseToken = function (headerValue) {
                 },
             ],
             })
-        }
-
-        if (!apiKey) {
-            return res.status(401).send({
-                errors: [
-                    {
-                    status: '401',
-                    title: 'Authentication failed',
-                    description: 'Missing or Invalid Api Key',
-                    },
-                ],
-                })
         }
 
     // Validate the JWT
