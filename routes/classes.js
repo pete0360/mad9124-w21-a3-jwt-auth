@@ -10,7 +10,7 @@ import requireAdmin from "../middleware/requireAdmin.js"
 const router = express.Router()
 
 router.get('/',authUser, requireAdmin, async (req, res) => {
-    const collection = await Person.find()
+    const collection = await Class.find()
     res.send({ data: collection })
 })
 
@@ -25,7 +25,6 @@ router.post('/', authUser, sanitizeBody, requireAdmin, async (req, res, next) =>
     } catch (err) {
         next(err)
     }
-
 })
 
 router.get('/:id', authUser, requireAdmin, async (req, res, next) => {

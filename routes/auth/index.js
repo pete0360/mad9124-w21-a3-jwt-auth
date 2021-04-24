@@ -2,6 +2,7 @@ import User from '../../models/User.js'
 import sanitizeBody from '../../middleware/sanitizeBody.js'
 import authUser from '../../middleware/authUser.js'
 import express from 'express'
+import AuthAttempt from '../../models/AuthAttempt.js'
 
 const router = express.Router()
 
@@ -25,6 +26,7 @@ router.patch('/users/me', authUser, sanitizeBody, async (req, res) => {
 })
 
 router.post('/tokens', sanitizeBody, async (req, res) => {
+    new AuthAttempt(req.sanitizedBody)
     const { email, password } = req.sanitizedBody
     const authenticatedUser = await User.authenticate(email, password)
 

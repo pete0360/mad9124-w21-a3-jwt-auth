@@ -13,4 +13,3 @@ export default function requireAdmin(req, res, next) {
     }
     next()
   }
-  

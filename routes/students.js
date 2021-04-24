@@ -10,7 +10,7 @@ import requireAdmin from "../middleware/requireAdmin.js"
 const router = express.Router()
 
 router.get('/',authUser, requireAdmin, async (req, res) => {
-    const collection = await Person.find()
+    const collection = await Student.find()
     res.send({ data: collection })
 })
 

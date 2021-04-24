@@ -11,7 +11,6 @@ const parseToken = function (headerValue) {
         }
     return undefined
     }
-
     
     
     export default function (req, res, next) {
